@@ -2,6 +2,13 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { HiddenOnlyAuth, VisibleOnlyAuth } from './util/wrappers.js'
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
+import RaisedButton from 'material-ui/RaisedButton';
+
 // UI Components
 import LoginButtonContainer from './user/ui/loginbutton/LoginButtonContainer'
 import LogoutButtonContainer from './user/ui/logoutbutton/LogoutButtonContainer'
@@ -36,17 +43,22 @@ class App extends Component {
     )
 
     return (
-      <div className="App">
-        <nav className="navbar pure-menu pure-menu-horizontal">
-          <Link to="/" className="pure-menu-heading pure-menu-link">Truffle Box</Link>
-          <ul className="pure-menu-list navbar-right">
-            <OnlyGuestLinks />
-            <OnlyAuthLinks />
-          </ul>
-        </nav>
+      <MuiThemeProvider>
+        <div className="App">
+          <nav className="navbar pure-menu pure-menu-horizontal">
+            <Link to="/" className="pure-menu-heading pure-menu-link">Truffle Box</Link>
+            <ul className="pure-menu-list navbar-right">
+              <OnlyGuestLinks />
+              <OnlyAuthLinks />
+            </ul>
+          </nav>
 
-        {this.props.children}
-      </div>
+          {this.props.children}
+
+           <RaisedButton label="Default" />
+
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
