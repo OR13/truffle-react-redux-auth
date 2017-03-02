@@ -29,7 +29,7 @@ ReactDOM.render((
         <Route path="/" component={App}>
           <IndexRoute component={Home} />
           <Route path="dashboard" component={UserIsAuthenticated(Dashboard)} />
-          <Route path="create-loan" component={UserIsNotAuthenticated(CreateLoan)} />
+          <Route path="create-loan" component={UserIsAuthenticated(CreateLoan)} />
           <Route path="signup" component={UserIsNotAuthenticated(SignUp)} />
           <Route path="profile" component={UserIsAuthenticated(Profile)} />
         </Route>

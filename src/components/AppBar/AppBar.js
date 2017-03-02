@@ -1,6 +1,8 @@
-import React, {Component} from 'react';
-import { Link } from 'react-router'
+import React, { Component } from 'react';
+// import { Link } from 'react-router'
 import { HiddenOnlyAuth, VisibleOnlyAuth } from '../../util/wrappers.js'
+
+import { Link } from 'react-router'
 
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
@@ -8,52 +10,52 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
-/**
- * This example is taking advantage of the composability of the `AppBar`
- * to render different components depending on the application state.
- */
+
+import LoginButtonContainer from '../../user/ui/loginbutton/LoginButtonContainer'
+import LogoutButtonContainer from '../../user/ui/logoutbutton/LogoutButtonContainer'
+
+
 class TBAppBar extends Component {
-  state = {logged: false}
+
   render() {
-    const { authData } = this.props
+
+    const { authData } = this.props;
+
+    console.log('appBar AuthData', authData)
 
     const OnlyAuthLinks = VisibleOnlyAuth(() =>
-      <IconMenu
-        iconButtonElement={
-          <IconButton><MoreVertIcon /></IconButton>
-        }
-        targetOrigin={{horizontal: 'right', vertical: 'top'}}
-        anchorOrigin={{horizontal: 'right', vertical: 'top'}} >
 
-        <MenuItem primaryText="Dashboard" href="/dashboard" />
-        <MenuItem primaryText="Create Loan" href="/create-loan" />
+      <div>
+        <MenuItem primaryText="Dashboard" containerElement={<Link to="/dashboard" />} />
+        <MenuItem primaryText="Profile" containerElement={<Link to="/profile" />} />
+        <MenuItem primaryText="Create Loan" containerElement={<Link to="/create-load" />} />
+        <MenuItem primaryText="Logout" containerElement={<LogoutButtonContainer />} />
+      </div>
 
-      </IconMenu>
     )
 
     const OnlyGuestLinks = HiddenOnlyAuth(() =>
-      <IconMenu
-        iconButtonElement={
-          <IconButton><MoreVertIcon /></IconButton>
-        }
-        targetOrigin={{horizontal: 'right', vertical: 'top'}}
-        anchorOrigin={{horizontal: 'right', vertical: 'top'}} >
-
-        <MenuItem primaryText="Sign Up" href="/signup" />
-      </IconMenu>
+      <div>
+        <MenuItem primaryText="Sign Up" containerElement={<Link to="/signup" />} />
+        <MenuItem primaryText="Login" containerElement={<LoginButtonContainer />} />
+      </div>
     )
-
 
     return (
       <div>
         <AppBar
           title="Truffle Box"
-          iconElementRight={this.state.logged ? <OnlyAuthLinks/> : <OnlyGuestLinks/>}>
+          iconElementRight={<IconMenu
+            iconButtonElement={
+              <IconButton><MoreVertIcon /></IconButton>
+            }
+            targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+            anchorOrigin={{ horizontal: 'right', vertical: 'top' }} >
+            <OnlyAuthLinks />
+            <OnlyGuestLinks />
+          </IconMenu>}>
         </AppBar>
-        // <p>{this.props.authData == undefined ? "anonymous" : this.props.authData.name}</p>
-        <span>{JSON.stringify(this.props)}</span>
       </div>
-      // </div>
     );
   }
 }
