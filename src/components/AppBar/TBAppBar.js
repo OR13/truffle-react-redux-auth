@@ -9,13 +9,20 @@ import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-
+import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 
 import LoginButtonContainer from '../../user/ui/loginbutton/LoginButtonContainer'
 import LogoutButtonContainer from '../../user/ui/logoutbutton/LogoutButtonContainer'
 
+import Drawer from 'material-ui/Drawer';
 
 class TBAppBar extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { open: false };
+  }
+  handleToggle = () => this.setState({ open: !this.state.open });
 
   render() {
 
@@ -45,6 +52,12 @@ class TBAppBar extends Component {
       <div>
         <AppBar
           title="Truffle Box"
+          
+          iconElementLeft={  <IconButton
+                    tooltip="Learn more about this truffle box..."
+                    tooltipPosition="bottom-right"
+                    onTouchTap={this.handleToggle}
+                >  <NavigationMenu /></IconButton>}
           iconElementRight={<IconMenu
             iconButtonElement={
               <IconButton><MoreVertIcon /></IconButton>
@@ -55,6 +68,10 @@ class TBAppBar extends Component {
             <OnlyGuestLinks />
           </IconMenu>}>
         </AppBar>
+
+        <Drawer width={420} openSecondary={true} open={this.state.open} >
+          <AppBar title="Sub Truffle Box" />
+        </Drawer>
       </div>
     );
   }

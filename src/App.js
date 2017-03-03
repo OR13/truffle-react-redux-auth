@@ -5,8 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-import TBAppBar from './components/AppBar/AppBar'
-
+import TBAppBar from './components/AppBar/TBAppBar'
 
 // Styles
 import './css/oswald.css'
