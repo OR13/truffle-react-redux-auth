@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import ProfileForm from '../components/ProfileForm'
-import { updateUser } from '../actions/ProfileActions'
+import Profile from '../components/Profile'
+import { updateUser } from '../actions'
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -10,12 +10,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onProfileFormSubmit: (name) => {
+    onProfileSubmit: (name) => {
       event.preventDefault();
-
       dispatch(updateUser(name))
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileForm)
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)

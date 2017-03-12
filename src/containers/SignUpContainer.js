@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import SignUpForm from '../components/SignUpForm'
-import { signUpUser } from '../actions/SignUpActions'
+import SignUp from '../components/SignUp'
+import { signUpUser } from '../actions'
 
 const mapStateToProps = (state, ownProps) => {
   return {}
@@ -8,12 +8,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSignUpFormSubmit: (name) => {
+    onSignUpSubmit: (name) => {
       event.preventDefault();
-
       dispatch(signUpUser(name))
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

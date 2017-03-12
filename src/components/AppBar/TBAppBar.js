@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router'
-import { HiddenOnlyAuth, VisibleOnlyAuth } from '../../util/wrappers.js'
-
+import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
-import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
+import {
+  AppBar,
+  Drawer,
+  IconButton,
+  IconMenu,
+  MenuItem
+} from 'material-ui';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 
-import LoginButtonContainer from '../../containers/LoginButtonContainer'
-import LogoutButtonContainer from '../../containers/LogoutButtonContainer'
-
-import Drawer from 'material-ui/Drawer';
+import { HiddenOnlyAuth, VisibleOnlyAuth } from '../../util/wrappers.js';
+import { loginUser, logoutUser } from '../../actions';
 
 class TBAppBar extends Component {
 
@@ -22,13 +21,12 @@ class TBAppBar extends Component {
     super(props);
     this.state = { open: false };
   }
+
   handleToggle = () => this.setState({ open: !this.state.open });
 
   render() {
 
     const { authData } = this.props;
-
-    console.log('appBar AuthData', authData)
 
     const OnlyAuthLinks = VisibleOnlyAuth(() =>
 
@@ -36,7 +34,7 @@ class TBAppBar extends Component {
         <MenuItem primaryText="Dashboard" containerElement={<Link to="/dashboard" />} />
         <MenuItem primaryText="Profile" containerElement={<Link to="/profile" />} />
         <MenuItem primaryText="Create Loan" containerElement={<Link to="/create-loan" />} />
-        <MenuItem primaryText="Logout" containerElement={<LogoutButtonContainer />} />
+        <MenuItem primaryText="Logout" onClick={() => this.props.dispatch(logoutUser())} />
       </div>
 
     )
@@ -44,7 +42,7 @@ class TBAppBar extends Component {
     const OnlyGuestLinks = HiddenOnlyAuth(() =>
       <div>
         <MenuItem primaryText="Sign Up" containerElement={<Link to="/signup" />} />
-        <MenuItem primaryText="Login" containerElement={<LoginButtonContainer />} />
+        <MenuItem primaryText="Login" onClick={() => this.props.dispatch(loginUser())} />
       </div>
     )
 
@@ -69,12 +67,20 @@ class TBAppBar extends Component {
           </IconMenu>}>
         </AppBar>
 
-        <Drawer width={420} openSecondary={true} open={this.state.open} >
-          <AppBar title="Sub Truffle Box" />
+        <Drawer
+          docked={false}
+          open={this.state.open}
+          onRequestChange={(open) => this.setState({open})}
+        >
+          <MenuItem onTouchTap={this.handleToggle}>Close Menu</MenuItem>
         </Drawer>
       </div>
     );
   }
 }
 
-export default TBAppBar;
+const mapStateToProps = state => {
+  return {};
+};
+
+export default connect(mapStateToProps)(TBAppBar);

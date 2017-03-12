@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ProfileFormContainer from '../containers/ProfileFormContainer'
+import ProfileContainer from '../containers/ProfileContainer'
 
 class Profile extends Component {
   render() {
@@ -9,7 +9,7 @@ class Profile extends Component {
           <div className="pure-u-1-1">
             <h1>Profile</h1>
             <p>Edit your account details here.</p>
-            <ProfileFormContainer />
+            <ProfileContainer />
           </div>
         </div>
       </main>
