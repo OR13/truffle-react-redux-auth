@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-
 class Dashboard extends Component {
   render() {
     const { authData } = this.props
@@ -8,7 +7,6 @@ class Dashboard extends Component {
     console.log('dashboard authData: ', authData);
 
     return (
-
       <main className="container">
         <div className="pure-g">
           <div className="pure-u-1-1">
@@ -18,8 +16,6 @@ class Dashboard extends Component {
           </div>
         </div>
       </main>
-
-
     )
   }
 }

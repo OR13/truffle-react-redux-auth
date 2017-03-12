@@ -11,8 +11,8 @@ import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 
-import LoginButtonContainer from '../../user/ui/loginbutton/LoginButtonContainer'
-import LogoutButtonContainer from '../../user/ui/logoutbutton/LogoutButtonContainer'
+import LoginButtonContainer from '../../containers/LoginButtonContainer'
+import LogoutButtonContainer from '../../containers/LogoutButtonContainer'
 
 import Drawer from 'material-ui/Drawer';
 
@@ -35,7 +35,7 @@ class TBAppBar extends Component {
       <div>
         <MenuItem primaryText="Dashboard" containerElement={<Link to="/dashboard" />} />
         <MenuItem primaryText="Profile" containerElement={<Link to="/profile" />} />
-        <MenuItem primaryText="Create Loan" containerElement={<Link to="/create-load" />} />
+        <MenuItem primaryText="Create Loan" containerElement={<Link to="/create-loan" />} />
         <MenuItem primaryText="Logout" containerElement={<LogoutButtonContainer />} />
       </div>
 
@@ -52,7 +52,7 @@ class TBAppBar extends Component {
       <div>
         <AppBar
           title="Truffle Box"
-          
+
           iconElementLeft={  <IconButton
                     tooltip="Learn more about this truffle box..."
                     tooltipPosition="bottom-right"

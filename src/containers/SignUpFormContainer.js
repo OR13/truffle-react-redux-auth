@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import SignUpForm from './SignUpForm'
-import { signUpUser } from './SignUpFormActions'
+import SignUpForm from '../components/SignUpForm'
+import { signUpUser } from '../actions/SignUpActions'
 
 const mapStateToProps = (state, ownProps) => {
   return {}
@@ -16,9 +16,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const SignUpFormContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignUpForm)
-
-export default SignUpFormContainer
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm)

@@ -7,11 +7,11 @@ import { UserIsAuthenticated, UserIsNotAuthenticated } from './util/wrappers.js'
 
 // Layouts
 import App from './App';
-import Home from './layouts/home/Home';
-import Dashboard from './layouts/dashboard/Dashboard';
+import Home from './layouts/Home';
+import Dashboard from './layouts/Dashboard';
 import CreateLoan from './components/createLoan';
-import SignUp from './user/layouts/signup/SignUp';
-import Profile from './user/layouts/profile/Profile';
+import SignUp from './layouts/SignUp';
+import Profile from './layouts/Profile';
 
 // Redux Store
 import store from './store';

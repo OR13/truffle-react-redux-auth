@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
-import ProfileForm from './ProfileForm'
-import { updateUser } from './ProfileFormActions'
+import ProfileForm from '../components/ProfileForm'
+import { updateUser } from '../actions/ProfileActions'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    name: state.user.data.name
+    name: state.user.name
   }
 }
 
@@ -18,9 +18,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const ProfileFormContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProfileForm)
-
-export default ProfileFormContainer
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileForm)

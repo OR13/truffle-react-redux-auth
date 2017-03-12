@@ -1,12 +1,13 @@
 import Web3 from 'web3'
-import AuthenticationContract from '../../../../build/contracts/Authentication.json'
+import AuthenticationContract from '../../build/contracts/Authentication.json'
 import { browserHistory } from 'react-router'
 
 const provider = new Web3.providers.HttpProvider('http://localhost:8545')
 const web3 = new Web3(provider)
 const contract = require('truffle-contract')
 
-export const USER_LOGGED_IN = 'USER_LOGGED_IN'
+export const USER_LOGGED_IN = 'USER_LOGGED_IN';
+
 function userLoggedIn(user) {
   return {
     type: USER_LOGGED_IN,
